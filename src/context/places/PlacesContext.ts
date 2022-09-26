@@ -3,7 +3,8 @@ import { createContext } from "react";
 // Solo para saber los propiedades que va a tener este contexto
 export interface PlacesContextProps {
     isLoading: boolean,
-    userLocation?: [number, number]
+    userLocation?: [number, number],
+    searchPlacesByTerm: (query: string) => Promise<any>;
 }
 
 /* Aqui creamos el contexto de Places

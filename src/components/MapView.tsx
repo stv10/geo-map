@@ -1,14 +1,14 @@
 import { useContext, useLayoutEffect, useRef } from "react"
 import {Map} from "mapbox-gl";
 import { PlacesContext, MapContext } from "../context"
-import { Loading } from "./";
+import { Loading, BtnCenterLocation } from "./";
 
 
 
 export const MapView = () => {
 
     // Traigo de mi context las variables que tiene dentro
-    const {isLoading,userLocation} = useContext(PlacesContext);
+    const {isLoading,userLocation,searchPlacesByTerm} = useContext(PlacesContext);
     const {setCurrentMap} =  useContext(MapContext);
 
     /*Usamos una referencia para poder renderizar X cantidad de mapas
@@ -25,7 +25,8 @@ export const MapView = () => {
             zoom: 14, // starting zoom
             });
             setCurrentMap(map);
-      }
+          }
+          searchPlacesByTerm('asd');
 
     }, [isLoading, userLocation])
 

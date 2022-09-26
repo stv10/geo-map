@@ -1,4 +1,5 @@
 import { useEffect, useReducer } from "react";
+import { searchApi } from "../../apis";
 import { getUserLocation } from "../../helpers";
 import { PlacesContext } from "./PlacesContext";
 import { placesReducer } from "./placesreducer";
@@ -34,10 +35,24 @@ export const PlacesProvider = ({children}: Props) => {
     },[])
 
 
+    // use de la api searchApi
+    const searchPlacesByTerm = async( query: string) => {
+        if(query.length === 0) return []; //TODO limpiar
+        if(!state.userLocation) throw new Error('No hay ubicacion del usuario');
+        console.log(state.userLocation.join(','));
+        
+        // const resp = await searchApi.get(`/${state.userLocation.join('.')}.json`);
+        const resp = await searchApi.get(`/-60.528398,-31.731934.json`);
+
+        console.log(resp.data);  
+    }
+
+
 
   return (
     <PlacesContext.Provider value={{
         ...state,
+        searchPlacesByTerm
     }}>
         {children}
 
