@@ -1,0 +1,28 @@
+.loading-map {
+    background: rgba(0,0,0,0.8);
+    height: 100vh;
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 100vw;
+}
+
+.map-Div {
+    height: 80vh;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+
+.btn-location {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 999;
+}
+
+.btn-primary {
+    background-color: rgb(33,98,150)!important;
+    border-color: rgb(33,98,150);
+}
