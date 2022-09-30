@@ -45,10 +45,10 @@ export const PlacesProvider = ({children}: Props) => {
         
         // const resp = await searchApi.get(`/${state.userLocation.join('.')}.json`);
         // const resp = await searchApi.get<PlacesResponse>(`reverse?format=json&lon=-60.5282587&lat=-31.7320686`);
-        const resp = await searchApi.get<PlacesResponse>(`reverse?format=json&lon=${state.userLocation[0]}lat=${state.userLocation[1]}`);
+        const resp = await searchApi.get<PlacesResponse>(`reverse?format=json&lon=${state.userLocation[0]}&lat=${state.userLocation[1]}`);
 
         
-        alert(resp.data);
+        // alert(resp.data);
         
         let direccion = `${resp.data.address.road} ${resp.data.address.house_number}, ${resp.data.address.city}`;
         dispatch({type: 'setDireccion', payload: direccion});
