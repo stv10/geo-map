@@ -44,7 +44,8 @@ export const PlacesProvider = ({children}: Props) => {
         console.log(state.userLocation.join(','));
         
         // const resp = await searchApi.get(`/${state.userLocation.join('.')}.json`);
-        const resp = await searchApi.get<PlacesResponse>(`reverse?format=json&lon=-60.5282587&lat=-31.7320686`);
+        // const resp = await searchApi.get<PlacesResponse>(`reverse?format=json&lon=-60.5282587&lat=-31.7320686`);
+        const resp = await searchApi.get<PlacesResponse>(`reverse?format=json&lon=${state.userLocation[0]}lat=${state.userLocation[1]}`);
 
         
         console.log(resp);
