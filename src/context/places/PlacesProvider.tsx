@@ -1,6 +1,7 @@
 import { useEffect, useReducer } from "react";
 import { searchApi } from "../../apis";
 import { getUserLocation } from "../../helpers";
+import { PlacesResponse } from "../../interfaces/places";
 import { PlacesContext } from "./PlacesContext";
 import { placesReducer } from "./placesreducer";
 
@@ -8,13 +9,15 @@ import { placesReducer } from "./placesreducer";
 export interface PlacesState {
     isLoading: boolean;
     userLocation?: [number, number],
+    direccion: string
 }
 
 // este va ser el estado inicial de nuestra aplicacion
 const INITIAL_STATE: PlacesState = {
     // cuando la aplicacion cargav siempre va a ser isLoading = true
     isLoading: true,
-    userLocation: undefined
+    userLocation: undefined,
+    direccion: ''
 }
 
 // Defino esto para decirle de que tipo va a ser mi children al Provider
@@ -36,15 +39,18 @@ export const PlacesProvider = ({children}: Props) => {
 
 
     // use de la api searchApi
-    const searchPlacesByTerm = async( query: string) => {
-        if(query.length === 0) return []; //TODO limpiar
+    const setPlace = async() => {
         if(!state.userLocation) throw new Error('No hay ubicacion del usuario');
         console.log(state.userLocation.join(','));
         
         // const resp = await searchApi.get(`/${state.userLocation.join('.')}.json`);
-        const resp = await searchApi.get(`/-60.528398,-31.731934.json`);
+        const resp = await searchApi.get<PlacesResponse>(`reverse?format=json&lon=-60.5282587&lat=-31.7320686`);
 
-        console.log(resp.data);  
+        
+        console.log(resp);
+        
+        let direccion = `${resp.data.address.road} ${resp.data.address.house_number}, ${resp.data.address.city}`;
+        dispatch({type: 'setDireccion', payload: direccion});
     }
 
 
@@ -52,7 +58,7 @@ export const PlacesProvider = ({children}: Props) => {
   return (
     <PlacesContext.Provider value={{
         ...state,
-        searchPlacesByTerm
+        setPlace
     }}>
         {children}
 

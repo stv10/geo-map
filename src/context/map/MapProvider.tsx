@@ -1,4 +1,5 @@
-import { Map, Marker } from 'mapbox-gl'; 
+// import { Marker } from 'mapbox-gl'; 
+import L, { Map, Marker } from 'leaflet';
 import { useReducer } from 'react';
 import { MapContext } from './MapContext';
 import { mapReducer } from './mapReducer';
@@ -25,11 +26,7 @@ export const MapProvider = ({children}:Props) => {
     const [state, dispatch] = useReducer(mapReducer, INITIAL_STATE);
 
     const setCurrentMap = (map: Map) => {
-        new Marker({
-            color: 'rgb(33,98,150)'
-        })
-        .setLngLat(map.getCenter())
-        .addTo(map);
+        L.marker(map.getCenter()).addTo(map);
 
         dispatch({type: 'setCurrentMap', payload: map})
     }

@@ -1,5 +1,6 @@
 import { createContext } from "react";
-import {Map} from 'mapbox-gl'
+import { Map } from "leaflet";
+// import {Map} from 'mapbox-gl'
 
 interface MapContextProps {
     isMapReady: boolean;

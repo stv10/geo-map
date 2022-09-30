@@ -1,9 +1,9 @@
 import { PlacesState } from './PlacesProvider';
 
 /*Solo se van a realizar acciones que esten dentro de nuestro tipo PlacesAction*/
-type PlacesAction = {
-    type: 'setUserLocation', payload: [number,number]
-};
+type PlacesAction =
+| { type: 'setUserLocation', payload: [number,number] }
+| { type: 'setDireccion', payload: string };
 /*Esto es una funcion pura que recibe nuestro estado
 y devuelve un objeto del mismo tipo luego de realizar
 unas acciones, hay muchas maneras de definir las acciones
@@ -15,7 +15,13 @@ export const placesReducer = (state: PlacesState, action: PlacesAction): PlacesS
                     ...state,
                     isLoading: false,
                     userLocation: action.payload
+                    
             };
+        case 'setDireccion':
+            return {
+                ...state,
+                direccion: action.payload
+            }
         default:
             return state;
     }

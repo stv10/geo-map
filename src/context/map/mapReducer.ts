@@ -1,4 +1,5 @@
-import { Map } from 'mapbox-gl'
+// import { Map } from 'mapbox-gl'
+import { Map } from 'leaflet'
 import { MapState } from "./MapProvider"
 
 

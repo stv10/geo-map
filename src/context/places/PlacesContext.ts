@@ -4,7 +4,8 @@ import { createContext } from "react";
 export interface PlacesContextProps {
     isLoading: boolean,
     userLocation?: [number, number],
-    searchPlacesByTerm: (query: string) => Promise<any>;
+    direccion: string,
+    setPlace: () => Promise<any>;
 }
 
 /* Aqui creamos el contexto de Places
