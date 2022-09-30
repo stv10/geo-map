@@ -1,4 +1,4 @@
-import { BtnCenterLocation, MapView } from '../components'
+import { MapView } from '../components'
 
 export const HomePage = () => {
 
