@@ -24,6 +24,10 @@
     border-color: rgb(33,98,150)!important;
 }
 
+.text-primary {
+    color: rgb(33,98,150)!important;
+}
+
 .btn-primary:hover {
     color: rgb(33,98,150)!important;
     background-color: rgb(254,254,254)!important;

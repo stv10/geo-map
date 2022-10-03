@@ -5,7 +5,8 @@ import ReactDOM from 'react-dom/client'
 // Para esto funcione primero tuve que realizar npm i --save-dev @types/mapbox-gl
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
-import { HomeScreen } from './screens';
+import { LoginScreen } from './screens/LoginScreen';
+import { MapProvider, PlacesProvider } from './context';
  
 // Este es el token de mi cuenta creada en MapBox
 mapboxgl.accessToken = 'pk.eyJ1Ijoic3R2MTAiLCJhIjoiY2w4YzVrMHBuMDNrMTNwcHA5Z3VpZ212MSJ9.sg-PkET99yjyR9OBEVrpzA';
@@ -18,12 +19,16 @@ if(!navigator.geolocation) {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<MapasApp />} >
-          <Route path='geo' element={<MapasApp />} />
-        </Route>    
-      </Routes>
-    </BrowserRouter>
+    <PlacesProvider>
+      <MapProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<LoginScreen />} >
+            </Route>    
+            <Route path='/geo' element={<MapasApp />} />
+          </Routes>
+        </BrowserRouter>
+      </MapProvider>
+    </ PlacesProvider>
   </React.StrictMode>
 )
